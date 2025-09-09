@@ -23,8 +23,10 @@ export async function POST(request: NextRequest) {
             model: google('gemini-2.5-flash'),
             prompt,
         })
-        console.log('Generated story:', text)
-        return NextResponse.json({story:text})
+
+        const [narrative, imagePrompt]=text.split(GAME_CONFIG.IMAGE.SEPARATOR);
+
+        return NextResponse.json({narrative, imagePrompt})
     } catch (error) {
         console.error('Erroe generating story:', error);
         return NextResponse.json({error: 'Erroe generating story'}, {status:500})

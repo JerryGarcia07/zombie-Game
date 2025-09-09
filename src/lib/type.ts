@@ -25,6 +25,6 @@ export interface GenerateStoryRequest {
 }
 
 export interface GenerateStoryResponse {
-  story: string;
-  image: GeneratedImage;
+  narrative: string;
+  imagePrompt: GeneratedImage;
 }

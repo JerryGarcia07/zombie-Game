@@ -10,9 +10,9 @@ import { generateImageRequest } from '@/lib/type'
 
 export async function POST(request: NextRequest) {
     try {
-        const { imageProps }: generateImageRequest = await request.json();
+        const { imagePrompt }: generateImageRequest = await request.json();
         
-        const prompt=GAME_PROMPTS.GENERATE_IMAGE(imageProps)
+        const prompt=GAME_PROMPTS.GENERATE_IMAGE(imagePrompt)
     
         const {files}=await generateText({
             model: google('gemini-2.5-flash-image-preview'),
@@ -26,9 +26,9 @@ export async function POST(request: NextRequest) {
 
         console.log('generated images: ',files)
 
-        return NextResponse.json({image:files[0]||null})
+        return NextResponse.json({image:files[0] || null})
     } catch (error) {
-        console.error('Erroe generating story:', error);
-        return NextResponse.json({error: 'Erroe generating story'}, {status:500})
+        console.error('Error generating image:', error);
+        return NextResponse.json({error: 'Error generating image'}, {status:500})
     }
 }

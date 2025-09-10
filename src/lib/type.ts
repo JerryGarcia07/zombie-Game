@@ -1,3 +1,4 @@
+import { generateText } from 'ai';
 export interface GameMessage {
   id: string;
   role: 'user' | 'assistant';
@@ -22,6 +23,10 @@ export interface GenerateStoryRequest {
   userMessage: string;
   conversationHistory: ConversationMessage[];
   isStart: boolean;
+}
+
+export interface generateImageRequest{
+  imagePrompt: string;
 }
 
 export interface GenerateStoryResponse {
